@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "895941070251",
+    "project_id": "avalon-reword",
+    "storage_bucket": "avalon-reword.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895941070251:android:27cb79a121cdb4fffc96ee",
+        "android_client_info": {
+          "package_name": "com.ni.avalon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdjW5AZgx2F8lT8_7cSpYCjTstsvPwpWU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
