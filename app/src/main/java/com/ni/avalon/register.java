@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -29,6 +30,7 @@ public class register extends AppCompatActivity {
     EditText reg_nombre, reg_apellido, fnacimiento, reg_email, reg_contraseña, conf_contraseña;
     FirebaseAuth auth;
     FirebaseDatabase database;
+    ProgressBar RegisterProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class register extends AppCompatActivity {
                 Intent intent = new Intent(register.this, MainActivity.class);
                 startActivity(intent);
                 // aqui decimos que al presionar el boton nos mandara al activity main de nuestro proyecto
+                finish(); // una vez terminada su ejecucion matamos el activity para ahorrar recursos
             }
         });
 
@@ -56,10 +59,13 @@ public class register extends AppCompatActivity {
         reg_email = findViewById(R.id.reg_email);
         reg_contraseña = findViewById(R.id.reg_contraseña);
         conf_contraseña = findViewById(R.id.conf_contraseña);
+        RegisterProgressBar = findViewById(R.id.RegisterProgressBar);
+        RegisterProgressBar.setVisibility(View.GONE); // ocultamos nuestra progressbar
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                RegisterProgressBar.setVisibility(View.VISIBLE); // mostramos nuestra progressbar mientras se ejecute la funcion
                 // llamamos la funcion createUser
                 createUser();
             }
@@ -137,9 +143,12 @@ public class register extends AppCompatActivity {
                             Toast.makeText(register.this, "Registro completado", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(register.this, menu.class);
                             startActivity(intent); // si sale todo bien nuestro usuario sera registrado correctamente y nos redirigira al menu
+                            RegisterProgressBar.setVisibility(View.GONE); // la ocultamos de nuevo la progressbar
+                            finish(); // una vez terminada su ejecucion matamos el activity para ahorrar recursos
                         }
                         else{
                             Toast.makeText(register.this, "Ha habido un problema con el registro", Toast.LENGTH_SHORT).show();
+                            RegisterProgressBar.setVisibility(View.GONE); // la ocultamos de nuevo la progressbar
                             // en caso de un error de conexion con firebase mostrara este mensaje
                         }
                     }

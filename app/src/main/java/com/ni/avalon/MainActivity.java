@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText email, password; // declaramos el tipo de variable de nuestro user y password
     FirebaseAuth auth; // declaramos la variable auth
+    ProgressBar LoginProgressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance(); // instanciamos la variable con la funcion auth de firebase
         email = findViewById(R.id.email); // declaramos una variable para nuestro campo de texto de usuario
         password = findViewById(R.id.password); // declaramos una variable para nuestro campo de texto de contraseña
+        LoginProgressBar = findViewById(R.id.LoginProgressBar);
+        LoginProgressBar.setVisibility(View.GONE);
 
         Button loginButton = findViewById(R.id.btnLogin); // llamamos a nuestro Button por su id
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     // en caso de que no haya ningun campo de texto nos mostrara un mensaje pidiendo que rellenemos los campos de nuestro login
                 }
                 else{
+                    LoginProgressBar.setVisibility(View.VISIBLE); // mostramos la progressbar mientras se ejecuta la funcion
                     loginUser(); // llamamos al metodo de loginUser
                 }
             }
@@ -91,11 +96,14 @@ public class MainActivity extends AppCompatActivity {
                            Toast.makeText(MainActivity.this, "Inicio se sesion correcto", Toast.LENGTH_SHORT).show();
                            Intent intent = new Intent(MainActivity.this, menu.class);
                            startActivity(intent);
+                           LoginProgressBar.setVisibility(View.GONE); // se vuelve a ocultar la progresbar
                            // en caso de que los datos sean correctos procedera a redirigirnos al menu de nuestra aplicacion
+                           finish(); // una vez terminada su ejecucion matamos el activity para ahorrar recursos
                        }
                        else{
                            Toast.makeText(MainActivity.this, "Usuario no encontrado", Toast.LENGTH_SHORT).show();
                            // en caso de errores o que los datos no coincidan con los que hay en firebase mandara este error
+                           LoginProgressBar.setVisibility(View.GONE); // se vuelve a ocultar la progressbar
                        }
                     }
                 });
