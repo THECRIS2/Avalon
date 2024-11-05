@@ -41,7 +41,7 @@ public class HomeFragment extends Fragment {
 
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        popularRec = root.findViewById(R.id.pop_rec);
+        popularRec = root.findViewById(R.id.pop_rec); //lo asociamos con el id del list view correspondiente a populares
 
         // items mas populares
         popularRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
