@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/pop_img"
+            android:layout_width="280dp"
+            android:layout_height="190dp"
+            android:src="@drawable/desc"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/radius"/>
+        <!-- Con scaletype se redimensiona la imagen al tamaño de la cardview-->
+        <TextView
+            android:id="@+id/pop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Productos mas relevantes"
+            android:textSize="19sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/pop_description"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Descripcion"/>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ratingbar"
+                android:scaleType="centerCrop" />
+            <TextView
+                android:id="@+id/pop_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="5dp"
+                android:text="5.0"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"/>
+            <TextView
+                android:id="@+id/pop_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="80% de descuento"
+                android:textStyle="bold"
+                android:textColor="#001f94"
+                android:gravity="end"
+                android:fontFamily="sans-serif"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
