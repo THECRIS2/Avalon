@@ -89,6 +89,7 @@ public class register extends AppCompatActivity {
             Toast.makeText(this, "El campo de apellido esta vacio", Toast.LENGTH_SHORT).show();
             return;
             // comprobara si el campo apellido esta vacio
+
         }
 
         if (TextUtils.isEmpty(Fnacimiento)){

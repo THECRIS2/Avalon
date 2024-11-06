@@ -19,8 +19,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.ni.avalon.R;
+import com.ni.avalon.adapters.HomeAdapter;
 import com.ni.avalon.adapters.PopularAdapters;
 import com.ni.avalon.databinding.FragmentHomeBinding;
+import com.ni.avalon.model.HomeCategory;
 import com.ni.avalon.model.PopularModel;
 
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    RecyclerView popularRec;
+    RecyclerView popularRec, homeCatRec;
     FirebaseFirestore db; // se hace la conexion con la base de datos
 
 
@@ -36,19 +38,22 @@ public class HomeFragment extends Fragment {
     PopularAdapters popularAdapters;
     List<PopularModel> popularModelList;
 
+    // categoria de items
+    HomeAdapter homeAdapter;
+    List<HomeCategory> categoryList;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+        db = FirebaseFirestore.getInstance();
+
         popularRec = root.findViewById(R.id.pop_rec); //lo asociamos con el id del list view correspondiente a populares
+        homeCatRec = root.findViewById(R.id.explore_rec);
 
         // items mas populares
         popularRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-
-        db = FirebaseFirestore.getInstance();
-
-
         popularModelList = new ArrayList<>();
         popularAdapters = new PopularAdapters(getActivity(),popularModelList);
         popularRec.setAdapter(popularAdapters);
@@ -65,6 +70,31 @@ public class HomeFragment extends Fragment {
                                 PopularModel popularModel = document.toObject(PopularModel.class);
                                 popularModelList.add(popularModel);
                                 popularAdapters.notifyDataSetChanged();
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), "Error" + task.getException(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+        // items mas populares
+        homeCatRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+        categoryList = new ArrayList<>();
+        homeAdapter = new HomeAdapter(getActivity(),categoryList);
+        homeCatRec.setAdapter(homeAdapter);
+
+
+        // este codigo te lo genera el apartado cloud firestore cuando vas a importar las librerias de cloud store
+        db.collection("HomeCategory")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                HomeCategory homeCategory = document.toObject(HomeCategory.class);
+                                categoryList.add(homeCategory);
+                                homeAdapter.notifyDataSetChanged();
                             }
                         } else {
                             Toast.makeText(getActivity(), "Error" + task.getException(), Toast.LENGTH_SHORT).show();
