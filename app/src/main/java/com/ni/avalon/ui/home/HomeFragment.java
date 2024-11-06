@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,16 +23,20 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.ni.avalon.R;
 import com.ni.avalon.adapters.HomeAdapter;
 import com.ni.avalon.adapters.PopularAdapters;
+import com.ni.avalon.adapters.RecommendedAdapter;
 import com.ni.avalon.databinding.FragmentHomeBinding;
 import com.ni.avalon.model.HomeCategory;
 import com.ni.avalon.model.PopularModel;
+import com.ni.avalon.model.RecommendedModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    RecyclerView popularRec, homeCatRec;
+    ProgressBar progressBar;
+    ScrollView scrollView;
+    RecyclerView popularRec, homeCatRec, recommendedRec;
     FirebaseFirestore db; // se hace la conexion con la base de datos
 
 
@@ -42,6 +48,10 @@ public class HomeFragment extends Fragment {
     HomeAdapter homeAdapter;
     List<HomeCategory> categoryList;
 
+    // recomendados
+    RecommendedAdapter recommendedAdapter;
+    List<RecommendedModel> recommendedModelList;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -51,6 +61,12 @@ public class HomeFragment extends Fragment {
 
         popularRec = root.findViewById(R.id.pop_rec); //lo asociamos con el id del list view correspondiente a populares
         homeCatRec = root.findViewById(R.id.explore_rec);
+        recommendedRec = root.findViewById(R.id.recommended_rec);
+        scrollView = root.findViewById(R.id.scroll_view_home);
+        progressBar = root.findViewById(R.id.progressbarMenu);
+
+        progressBar.setVisibility(View.VISIBLE);
+        scrollView.setVisibility(View.GONE);
 
         // items mas populares
         popularRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
@@ -70,6 +86,9 @@ public class HomeFragment extends Fragment {
                                 PopularModel popularModel = document.toObject(PopularModel.class);
                                 popularModelList.add(popularModel);
                                 popularAdapters.notifyDataSetChanged();
+
+                                progressBar.setVisibility(View.GONE);
+                                scrollView.setVisibility(View.VISIBLE);
                             }
                         } else {
                             Toast.makeText(getActivity(), "Error" + task.getException(), Toast.LENGTH_SHORT).show();
@@ -77,7 +96,7 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
-        // items mas populares
+        // catalogo
         homeCatRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         categoryList = new ArrayList<>();
         homeAdapter = new HomeAdapter(getActivity(),categoryList);
@@ -95,6 +114,31 @@ public class HomeFragment extends Fragment {
                                 HomeCategory homeCategory = document.toObject(HomeCategory.class);
                                 categoryList.add(homeCategory);
                                 homeAdapter.notifyDataSetChanged();
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), "Error" + task.getException(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+        // recomendado
+        recommendedRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+        recommendedModelList = new ArrayList<>();
+        recommendedAdapter = new RecommendedAdapter(getActivity(),recommendedModelList);
+        recommendedRec.setAdapter(recommendedAdapter);
+
+
+        // este codigo te lo genera el apartado cloud firestore cuando vas a importar las librerias de cloud store
+        db.collection("Recommended")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                RecommendedModel recommendedModel = document.toObject(RecommendedModel.class);
+                                recommendedModelList.add(recommendedModel);
+                                recommendedAdapter.notifyDataSetChanged();
                             }
                         } else {
                             Toast.makeText(getActivity(), "Error" + task.getException(), Toast.LENGTH_SHORT).show();
