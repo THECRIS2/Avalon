@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -18,12 +19,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.ni.avalon.R;
+import android.content.SharedPreferences;
+import android.content.Context;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText email, password; // declaramos el tipo de variable de nuestro user y password
     FirebaseAuth auth; // declaramos la variable auth
     ProgressBar LoginProgressBar;
+    CheckBox recordarSesion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +49,19 @@ public class MainActivity extends AppCompatActivity {
         email = findViewById(R.id.email); // declaramos una variable para nuestro campo de texto de usuario
         password = findViewById(R.id.password); // declaramos una variable para nuestro campo de texto de contraseña
         LoginProgressBar = findViewById(R.id.LoginProgressBar);
+
+        recordarSesion = findViewById(R.id.recordarSesion);
+        SharedPreferences sharedPreferences = getSharedPreferences("login_prefs", MODE_PRIVATE);
+        boolean isRemembered = sharedPreferences.getBoolean("remember_me", false);
+
+        if (isRemembered) {
+            // Si la sesión está recordada, ir directamente al menú
+            Intent intent = new Intent(MainActivity.this, menu.class);
+            startActivity(intent);
+            finish();
+            return; // Salimos de onCreate para evitar mostrar la pantalla de login
+        }
+
         LoginProgressBar.setVisibility(View.GONE);
 
         Button loginButton = findViewById(R.id.btnLogin); // llamamos a nuestro Button por su id
@@ -95,6 +113,13 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                        if (task.isSuccessful()){
                            Toast.makeText(MainActivity.this, "Inicio se sesion correcto", Toast.LENGTH_SHORT).show();
+
+                           if (recordarSesion.isChecked()) {
+                               SharedPreferences.Editor editor = getSharedPreferences("login_prefs", MODE_PRIVATE).edit();
+                               editor.putBoolean("remember_me", true);
+                               editor.apply();
+                           }
+
                            Intent intent = new Intent(MainActivity.this, menu.class);
                            startActivity(intent);
                            LoginProgressBar.setVisibility(View.GONE); // se vuelve a ocultar la progresbar

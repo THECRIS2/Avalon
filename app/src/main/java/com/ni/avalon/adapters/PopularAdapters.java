@@ -1,6 +1,7 @@
 package com.ni.avalon.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.ni.avalon.R;
+import com.ni.avalon.ViewAllActivity;
 import com.ni.avalon.model.PopularModel;
 
 import java.util.List;
@@ -36,11 +38,21 @@ public class PopularAdapters extends RecyclerView.Adapter<PopularAdapters.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         // hay que importar primero la libreria de glide
-        Glide.with(context).load(popularModelList.get(position).getImg_UrlP()).into(holder.popImg);
-        holder.NombreP.setText(popularModelList.get(position).getNombreP());
-        holder.DescripcionP.setText(popularModelList.get(position).getDescripcionP());
-        holder.RatingP.setText(popularModelList.get(position).getRaitingP());
-        holder.DescuentoP.setText(popularModelList.get(position).getDescuentoP());
+        Glide.with(context).load(popularModelList.get(position).getImg_url()).into(holder.popImg);
+        holder.nombre.setText(popularModelList.get(position).getNombre());
+        holder.descripcion.setText(popularModelList.get(position).getDescripcion());
+        holder.rating.setText(popularModelList.get(position).getRaiting());
+        holder.descuento.setText(popularModelList.get(position).getDescuento());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int pos = holder.getAdapterPosition();
+                Intent intent = new Intent(context, ViewAllActivity.class);
+                intent.putExtra("tipo", popularModelList.get(pos).getTipo());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -51,7 +63,7 @@ public class PopularAdapters extends RecyclerView.Adapter<PopularAdapters.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView popImg;
-        TextView NombreP, DescripcionP, RatingP, DescuentoP;
+        TextView nombre, descripcion, rating, descuento;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -59,10 +71,10 @@ public class PopularAdapters extends RecyclerView.Adapter<PopularAdapters.ViewHo
 
             // asociamos las variables
             popImg = itemView.findViewById(R.id.pop_img);
-            NombreP = itemView.findViewById(R.id.pop_name);
-            DescripcionP = itemView.findViewById(R.id.pop_description);
-            RatingP = itemView.findViewById(R.id.pop_rating);
-            DescuentoP = itemView.findViewById(R.id.pop_discount);
+            nombre = itemView.findViewById(R.id.pop_name);
+            descripcion = itemView.findViewById(R.id.pop_description);
+            rating = itemView.findViewById(R.id.pop_rating);
+            descuento = itemView.findViewById(R.id.pop_discount);
         }
     }
 }

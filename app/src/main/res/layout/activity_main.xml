@@ -14,25 +14,27 @@
         android:layout_height="52dp"
         android:backgroundTint="@color/black"
         android:text="Registrarse"
+        android:fontFamily="sans-serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.789" />
+        app:layout_constraintVertical_bias="0.827" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="308dp"
         android:layout_height="52dp"
-        android:text="Iniciar Sesion"
         android:backgroundTint="@color/black"
+        android:text="Iniciar Sesion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.495"
+        android:fontFamily="sans-serif"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.686" />
+        app:layout_constraintVertical_bias="0.731" />
 
     <EditText
         android:id="@+id/password"
@@ -41,6 +43,7 @@
         android:backgroundTint="#000000"
         android:ems="10"
         android:hint="Contraseña"
+        android:fontFamily="sans-serif"
         android:inputType="textPassword"
         android:textColorHint="#4E4E4E"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,7 +51,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.578" />
+        app:layout_constraintVertical_bias="0.558" />
 
     <EditText
         android:id="@+id/email"
@@ -58,6 +61,7 @@
         android:ems="10"
         android:hint="Correo"
         android:inputType="text"
+        android:fontFamily="sans-serif"
         android:textColorHint="#4E4E4E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,5 +94,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.931" />
+
+    <CheckBox
+        android:id="@+id/recordarSesion"
+        android:layout_width="299dp"
+        android:layout_height="47dp"
+        android:text="Mantenerme conectado"
+        android:fontFamily="sans-serif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.455"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.63" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

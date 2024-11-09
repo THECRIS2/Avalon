@@ -2,72 +2,73 @@ package com.ni.avalon.model;
 
 public class PopularModel {
     // tienen que tener los mismos nombres que los campos de la bd de firebase
-    String NombreP;
-    String DescripcionP;
-    String RaitingP;
-    String DescuentoP;
-    String TipoP;
-    String Img_UrlP;
+    String nombre;
+    String descripcion;
+    String raiting;
+    String descuento;
+    String tipo;
+    String img_url;
 
     // generamos un constructor para nuestra clase
     public PopularModel() {
     }
 
     // generamos un constructor para nuestros datos
-    public PopularModel(String nombreP, String descripcionP, String raitingP, String descuentoP, String tipoP, String img_UrlP) {
-        NombreP = nombreP;
-        DescripcionP = descripcionP;
-        RaitingP = raitingP;
-        DescuentoP = descuentoP;
-        TipoP = tipoP;
-        Img_UrlP = img_UrlP;
+
+    public PopularModel(String nombre, String descripcion, String raiting, String descuento, String tipo, String img_url) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.raiting = raiting;
+        this.descuento = descuento;
+        this.tipo = tipo;
+        this.img_url = img_url;
     }
 
-    public String getNombreP() {
-        return NombreP;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreP(String nombreP) {
-        NombreP = nombreP;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getDescripcionP() {
-        return DescripcionP;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDescripcionP(String descripcionP) {
-        DescripcionP = descripcionP;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public String getRaitingP() {
-        return RaitingP;
+    public String getRaiting() {
+        return raiting;
     }
 
-    public void setRaitingP(String raitingP) {
-        RaitingP = raitingP;
+    public void setRaiting(String raiting) {
+        this.raiting = raiting;
     }
 
-    public String getDescuentoP() {
-        return DescuentoP;
+    public String getDescuento() {
+        return descuento;
     }
 
-    public void setDescuentoP(String descuentoP) {
-        DescuentoP = descuentoP;
+    public void setDescuento(String descuento) {
+        this.descuento = descuento;
     }
 
-    public String getTipoP() {
-        return TipoP;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setTipoP(String tipoP) {
-        TipoP = tipoP;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public String getImg_UrlP() {
-        return Img_UrlP;
+    public String getImg_url() {
+        return img_url;
     }
 
-    public void setImg_UrlP(String img_UrlP) {
-        Img_UrlP = img_UrlP;
+    public void setImg_url(String img_url) {
+        this.img_url = img_url;
     }
 }
