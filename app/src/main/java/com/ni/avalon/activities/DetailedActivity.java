@@ -1,6 +1,7 @@
 package com.ni.avalon.activities;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,7 +20,8 @@ import com.ni.avalon.model.ViewAllModel;
 public class DetailedActivity extends AppCompatActivity {
 
     ImageView detailedImg, additem, removeitem;
-    TextView precio, rating, descripcion;
+    TextView precio, rating, descripcion, cantidad;
+    int cantTotal;
     Button addtocart;
     Toolbar toolbar;
     ViewAllModel viewAllModel = null;
@@ -37,6 +39,7 @@ public class DetailedActivity extends AppCompatActivity {
         descripcion = findViewById(R.id.description_img);
         removeitem = findViewById(R.id.remove_item);
         addtocart = findViewById(R.id.add_to_cart);
+        cantidad = findViewById(R.id.quantity);
 
         // toolbar
         toolbar = findViewById(R.id.toolbarDetailed);
@@ -54,5 +57,25 @@ public class DetailedActivity extends AppCompatActivity {
             descripcion.setText(viewAllModel.getDescripcion());
             precio.setText(viewAllModel.getPrecio());
         }
+
+        additem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (cantTotal < 10){
+                    cantTotal++;
+                    cantidad.setText(String.valueOf(cantTotal));
+                }
+            }
+        });
+
+        removeitem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (cantTotal > 0){
+                    cantTotal--;
+                    cantidad.setText(String.valueOf(cantTotal));
+                }
+            }
+        });
     }
 }
