@@ -1,6 +1,7 @@
 package com.ni.avalon.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.ni.avalon.R;
+import com.ni.avalon.activities.ViewAllActivity;
 import com.ni.avalon.model.HomeCategory;
 
 import java.util.List;
@@ -36,6 +38,16 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
         Glide.with(context).load(categoryList.get(position).getUrl_img()).into(holder.catImg);
         holder.nombre.setText(categoryList.get(position).getNombre());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int pos = holder.getAdapterPosition();
+                Intent intent = new Intent(context, ViewAllActivity.class);
+                intent.putExtra("tipo", categoryList.get(pos).getTipo());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

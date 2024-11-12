@@ -1,6 +1,8 @@
 package com.ni.avalon.model;
 
-public class ViewAllModel {
+import java.io.Serializable;
+
+public class ViewAllModel implements Serializable {
     String nombre;
     String descripcion;
     String precio;

@@ -1,6 +1,7 @@
 package com.ni.avalon.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.ni.avalon.R;
+import com.ni.avalon.activities.DetailedActivity;
+import com.ni.avalon.activities.ViewAllActivity;
 import com.ni.avalon.model.ViewAllModel;
 
 import java.util.List;
@@ -41,6 +44,16 @@ public class ViewAllAdapter extends RecyclerView.Adapter<ViewAllAdapter.ViewHold
         holder.descripcion.setText(list.get(position).getDescripcion());
         holder.rating.setText(list.get(position).getRating());
         holder.precio.setText(list.get(position).getPrecio());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int pos = holder.getAdapterPosition();
+                Intent intent = new Intent(context, DetailedActivity.class);
+                intent.putExtra("descripcion", list.get(pos));
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

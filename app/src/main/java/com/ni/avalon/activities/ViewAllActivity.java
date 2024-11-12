@@ -1,4 +1,4 @@
-package com.ni.avalon;
+package com.ni.avalon.activities;
 
 import android.os.Bundle;
 
@@ -6,9 +6,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +14,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.ni.avalon.R;
 import com.ni.avalon.adapters.ViewAllAdapter;
 import com.ni.avalon.model.ViewAllModel;
 

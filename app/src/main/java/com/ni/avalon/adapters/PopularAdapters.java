@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.ni.avalon.R;
-import com.ni.avalon.ViewAllActivity;
+import com.ni.avalon.activities.ViewAllActivity;
 import com.ni.avalon.model.PopularModel;
 
 import java.util.List;
