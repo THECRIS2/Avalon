@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,6 +39,7 @@ public class MyCartsFragment extends Fragment {
     FirebaseAuth auth;
     MyCartAdapter cartAdapter;
     List<MyCartModel> cartModelList;
+    ProgressBar progressBar;
 
     public MyCartsFragment() {
         // Required empty public constructor
@@ -62,6 +64,10 @@ public class MyCartsFragment extends Fragment {
         cartAdapter = new MyCartAdapter(getActivity(),cartModelList);
         recyclerView.setAdapter(cartAdapter);
 
+        progressBar = root.findViewById(R.id.progressbarCart);
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
+
         db.collection("AddToCart").document(auth.getCurrentUser().getUid())
                 .collection("CurrentUser").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -71,6 +77,8 @@ public class MyCartsFragment extends Fragment {
                                 MyCartModel cartModel = documentSnapshot.toObject(MyCartModel.class);
                                 cartModelList.add(cartModel);
                                 cartAdapter.notifyDataSetChanged();
+                                progressBar.setVisibility(View.GONE);
+                                recyclerView.setVisibility(View.VISIBLE);
                             }
                         }
                     }

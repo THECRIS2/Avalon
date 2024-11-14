@@ -1,6 +1,8 @@
 package com.ni.avalon.activities;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -34,6 +36,7 @@ public class NavCategoryActivity extends AppCompatActivity {
     List<NavCategoryDetailedModel> list;
     NavCategoryDetailedAdapter adapter;
     FirebaseFirestore db;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,10 @@ public class NavCategoryActivity extends AppCompatActivity {
         adapter = new NavCategoryDetailedAdapter(this, list);
         recyclerView.setAdapter(adapter);
 
+        progressBar = findViewById(R.id.progressbarNavCat);
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
+
         // Almacenamiento
         if (tipo != null && tipo.equalsIgnoreCase("Almacenamiento")){
             db.collection("NavCategoryDetailed").whereEqualTo("tipo", "Almacenamiento").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -58,6 +65,8 @@ public class NavCategoryActivity extends AppCompatActivity {
                         NavCategoryDetailedModel navCategoryDetailedModel = documentSnapshot.toObject(NavCategoryDetailedModel.class);
                         list.add(navCategoryDetailedModel);
                         adapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
                     }
                 }
             });
@@ -73,6 +82,8 @@ public class NavCategoryActivity extends AppCompatActivity {
                         NavCategoryDetailedModel navCategoryDetailedModel = documentSnapshot.toObject(NavCategoryDetailedModel.class);
                         list.add(navCategoryDetailedModel);
                         adapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
                     }
                 }
             });
@@ -88,6 +99,8 @@ public class NavCategoryActivity extends AppCompatActivity {
                         NavCategoryDetailedModel navCategoryDetailedModel = documentSnapshot.toObject(NavCategoryDetailedModel.class);
                         list.add(navCategoryDetailedModel);
                         adapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
                     }
                 }
             });
@@ -103,6 +116,8 @@ public class NavCategoryActivity extends AppCompatActivity {
                         NavCategoryDetailedModel navCategoryDetailedModel = documentSnapshot.toObject(NavCategoryDetailedModel.class);
                         list.add(navCategoryDetailedModel);
                         adapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
                     }
                 }
             });
@@ -118,6 +133,8 @@ public class NavCategoryActivity extends AppCompatActivity {
                         NavCategoryDetailedModel navCategoryDetailedModel = documentSnapshot.toObject(NavCategoryDetailedModel.class);
                         list.add(navCategoryDetailedModel);
                         adapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
                     }
                 }
             });
@@ -133,6 +150,8 @@ public class NavCategoryActivity extends AppCompatActivity {
                         NavCategoryDetailedModel navCategoryDetailedModel = documentSnapshot.toObject(NavCategoryDetailedModel.class);
                         list.add(navCategoryDetailedModel);
                         adapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
                     }
                 }
             });
