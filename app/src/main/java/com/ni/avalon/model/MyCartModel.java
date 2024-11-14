@@ -1,12 +1,15 @@
 package com.ni.avalon.model;
 
-public class MyCartModel {
+import java.io.Serializable;
+
+public class MyCartModel implements Serializable {
     String productNombre;
     String productPrecio;
     String currentDate;
     String currentTime;
     String precioTotal;
     String cantTotal;
+    String documentid;
 
     public MyCartModel() {
     }
@@ -18,6 +21,14 @@ public class MyCartModel {
         this.currentTime = currentTime;
         this.precioTotal = precioTotal;
         this.cantTotal = cantTotal;
+    }
+
+    public String getDocumentid() {
+        return documentid;
+    }
+
+    public void setDocumentid(String documentid) {
+        this.documentid = documentid;
     }
 
     public String getProductNombre() {
