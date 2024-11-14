@@ -1,6 +1,7 @@
 package com.ni.avalon.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.ni.avalon.R;
+import com.ni.avalon.activities.NavCategoryActivity;
+import com.ni.avalon.activities.ViewAllActivity;
 import com.ni.avalon.model.NavCategoryModel;
 
 import java.util.List;
@@ -39,6 +42,16 @@ public class NavCategoryAdapter extends RecyclerView.Adapter<NavCategoryAdapter.
         holder.nombre.setText(list.get(position).getNombre());
         holder.descripcion.setText(list.get(position).getDescripcion());
         holder.descuento.setText(list.get(position).getDescuento());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int pos = holder.getAdapterPosition();
+                Intent intent = new Intent(context, NavCategoryActivity.class);
+                intent.putExtra("tipo", list.get(pos).getTipo());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

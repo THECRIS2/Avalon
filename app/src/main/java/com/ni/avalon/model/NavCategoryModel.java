@@ -5,15 +5,17 @@ public class NavCategoryModel {
     String descripcion;
     String descuento;
     String img_url;
+    String tipo;
 
     public NavCategoryModel() {
     }
 
-    public NavCategoryModel(String nombre, String descripcion, String descuento, String img_url) {
+    public NavCategoryModel(String nombre, String descripcion, String descuento, String img_url, String tipo) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.descuento = descuento;
         this.img_url = img_url;
+        this.tipo = tipo;
     }
 
     public String getNombre() {
@@ -32,6 +34,14 @@ public class NavCategoryModel {
         this.descripcion = descripcion;
     }
 
+    public String getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(String descuento) {
+        this.descuento = descuento;
+    }
+
     public String getImg_url() {
         return img_url;
     }
@@ -40,11 +50,11 @@ public class NavCategoryModel {
         this.img_url = img_url;
     }
 
-    public String getDescuento() {
-        return descuento;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setDescuento(String descuento) {
-        this.descuento = descuento;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }
