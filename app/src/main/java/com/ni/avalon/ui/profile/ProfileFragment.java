@@ -17,13 +17,19 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.ni.avalon.R;
+import com.ni.avalon.model.UserModel;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -34,7 +40,7 @@ public class ProfileFragment extends Fragment {
     Button actualizar;
     FirebaseStorage storage;
     FirebaseAuth auth;
-    FirebaseFirestore db;
+    FirebaseDatabase db;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -43,7 +49,7 @@ public class ProfileFragment extends Fragment {
 
         auth = FirebaseAuth.getInstance();
         storage = FirebaseStorage.getInstance();
-        db = FirebaseFirestore.getInstance();
+        db = FirebaseDatabase.getInstance();
 
         perfilImg = root.findViewById(R.id.profile_img);
         nombre = root.findViewById(R.id.profile_nombre);
@@ -52,6 +58,21 @@ public class ProfileFragment extends Fragment {
         correo = root.findViewById(R.id.profile_email);
         contraseña = root.findViewById(R.id.profile_contraseña);
         actualizar = root.findViewById(R.id.update_profile);
+
+        db.getReference().child("Usuarios").child(FirebaseAuth.getInstance().getUid())
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                UserModel userModel = snapshot.getValue(UserModel.class);
+
+                                Glide.with(getContext()).load(userModel.getProfileImg()).into(perfilImg);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
 
         perfilImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +102,7 @@ public class ProfileFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 33 && resultCode == getActivity().RESULT_OK && data != null && data.getData() != null) {
+        if (data.getData() != null){
             Uri profileUri = data.getData();
             perfilImg.setImageURI(profileUri);
 
@@ -92,9 +113,18 @@ public class ProfileFragment extends Fragment {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Toast.makeText(getContext(), "Actualizada correctamente", Toast.LENGTH_SHORT).show();
+
+                    reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            db.getReference().child("Usuarios").child(FirebaseAuth.getInstance().getUid())
+                                    .child("profileImg").setValue(uri.toString());
+                            Toast.makeText(getContext(),"Imagen de perfil actualizada", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             });
-        } else {
+        }else {
             Toast.makeText(getContext(), "No se seleccionó ninguna imagen", Toast.LENGTH_SHORT).show();
         }
     }

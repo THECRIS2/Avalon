@@ -6,6 +6,7 @@ public class UserModel {
     protected String fnacimiento;
     protected String correo;
     protected String contraseña;
+    protected String profileImg;
 
     public UserModel() {
     }
@@ -16,6 +17,14 @@ public class UserModel {
         this.fnacimiento = fnacimiento;
         this.correo = correo;
         this.contraseña = contraseña;
+    }
+
+    public String getProfileImg() {
+        return profileImg;
+    }
+
+    public void setProfileImg(String profileImg) {
+        this.profileImg = profileImg;
     }
 
     public String getNombre() {
