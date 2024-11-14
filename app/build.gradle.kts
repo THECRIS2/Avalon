@@ -50,10 +50,15 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
     //Glide
     implementation("com.github.bumptech.glide:glide:4.15.1")
+
+
+    // imageview Circulares
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 }
