@@ -8,6 +8,14 @@ Es un proyecto de ecommerce que su nombre en clave era **Avalon** el cual esta h
 - Se utiliza authentication de firebase para verificar los usuarios almacenados en la base de datos de realtime para dar acceso a los usuarios registrados a la aplicacion
 - Se utiliza firestore database para almacenar todos los datos de los productos de la aplicacion
 
+## Estructura del proyecto
+- Se utiliza los models para poder declarar y gestionar las variables que recibimos de la firestore database a traves de constructores y el envio y recibo de cada dato
+- Se usa el adapter para poder gestionar las operaciones que se haran con los datos asi como su manera de mostrarlos
+- Se utiliza los fragmentos para los distintos apartados de la aplicacion como Categorias, Inicio, Ofertas, Carrito de compra y Orden
+- Para nuestro menu principal se usa un Navigation Activity para poder navegar entre los diferentes elementos y categorias
+- Se usa el empty views activity para el login, registro y informacion del producto
+- Se utiliza las CardViews para poder mostrar una pequeña informacion de nuestros elementos como populares, categorias, ofertas
+
 ## Versiones
 - 0.1.0 Primera version alpha publica
 - 0.1.2 Login y registro completamente funcional
