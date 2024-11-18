@@ -1,5 +1,6 @@
 package com.ni.avalon.activities;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -10,6 +11,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -36,6 +39,7 @@ public class menu extends AppCompatActivity {
     FirebaseStorage storage;
     FirebaseAuth auth;
     FirebaseDatabase db;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,13 +84,22 @@ public class menu extends AppCompatActivity {
 
                     }
                 });
+
+        toolbar = binding.appBarMenu.toolbar; // Usa el Toolbar definido en el XML correctamente vinculado
+        toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.menu)); // Cambiar el ícono de navegación
+        if (toolbar.getNavigationIcon() != null) {
+            toolbar.getNavigationIcon().setTint(ContextCompat.getColor(this, android.R.color.white)); // aqui con esta sentencia se obtiene el color deseado
+        }
+
+        // iconos de la barra de estado en claro
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
+        return false;
     }
 
     @Override

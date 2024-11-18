@@ -26,10 +26,11 @@
                 <EditText
                     android:elevation="3dp"
                     android:id="@+id/barraBusqueda"
+                    android:background="@drawable/barrabusqueda"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:drawableLeft="@drawable/search"
+                    android:drawableLeft="@drawable/busqueda"
                     android:padding="13dp"
                     android:hint="Buscar"
                     android:drawablePadding="5dp"/>

@@ -9,7 +9,7 @@
     android:elevation="4dp">
 
     <LinearLayout
-        android:background="#00a4ac"
+        android:background="@color/blue"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">

@@ -13,7 +13,11 @@
         app:layout_constraintVertical_bias="0.0"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#8e9195"
+        android:background="@color/blue"
+        app:titleTextColor="@color/white"
+        android:elevation="4dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +113,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="#8e9195"
+        android:background="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -128,7 +132,8 @@
             android:layout_marginLeft="6dp"
             android:layout_marginTop="7dp"
             android:layout_marginBottom="9dp"
-            android:src="@drawable/add" />
+            app:tint="@color/white"
+            android:src="@drawable/agregar" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/add_to_cart"
@@ -152,12 +157,12 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="16dp"
             android:layout_toEndOf="@+id/add_item"
             android:text="1"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -174,7 +179,8 @@
             android:layout_marginRight="7dp"
             android:layout_marginBottom="9dp"
             android:layout_toEndOf="@+id/quantity"
-            android:src="@drawable/remove" />
+            app:tint="@color/white"
+            android:src="@drawable/menos" />
 
     </RelativeLayout>
 

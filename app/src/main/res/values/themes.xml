@@ -3,6 +3,7 @@
     <style name="Base.Theme.Avalon" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@color/white</item>
     </style>
 
     <style name="Theme.Avalon" parent="Base.Theme.Avalon" />
@@ -15,4 +16,5 @@
     <style name="Theme.Avalon.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Avalon.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
