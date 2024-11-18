@@ -9,5 +9,17 @@ Es un proyecto de ecommerce que su nombre en clave era **Avalon** el cual esta h
 - Se utiliza firestore database para almacenar todos los datos de los productos de la aplicacion
 
 ## Versiones
-- 0.1 primera version alpha publica
-- 0.1.2 login completamente funcional
+- 0.1.0 Primera version alpha publica
+- 0.1.2 Login y registro completamente funcional
+- 0.1.4 Se implementa el activity de navigation correctamente
+- 0.1.5 Se hace reestructuraciones con las clases del proyecto, se eliminaron algunas clases generadas por defecto por el navigation activity y las clases de las activitys anteriores se movieron a una carpeta llamada activity
+- 0.2.0 Se implementa la interfaz definitiva del menu parcialmente funcional
+- 0.2.2 Se ha implementado la informacion en las CardViews de populares
+- 0.2.3 Las CardViews de categoria han quedado funcionales
+- 0.3.0 Se han corregido errores de la aplicacion como los iconos de las cardviews que no se mostraban correctamente y se ha corregido un error que al presionar las cardview de populares a veces provocaban crasheos
+- 0.3.3 Se ha implementado el boton de añadir un objeto al carrito en la informacion del producto y se han añadido botones para aumentar o disminuir la cantidad de un producto
+- 0.3.4 Se ha implementado un carrito de compra funcional y se han convertido las variables de precio con una sentencia en int para hacer los calculos y el resultado de ese calculo vuelve a ser String con otra sentencia
+- 0.4.0 Se ha implementado las CardView de ordenes y se ha programado correctamente el boton de comprar ahora del carrito
+- 0.4.2 Se ha implementado la funcionalidad de la foto de perfil ahora el usuario puede subir su foto a la app
+- 0.4.4 Correcciones menores de errores esta es la ultima version que se identifica como Avalon ya que a partir de la siguiente version se identificara con su nombre final
+- 0.4.5 (Pre-Beta) Esta es la primera version en llamarse TecnoClick se corrige un error grave que al subir una foto a la app si el usuario no subia una foto hacia que la app se crasheaba, se hacen cambios en la interfaz para hacerla mas consistente
