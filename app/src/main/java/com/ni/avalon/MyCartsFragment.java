@@ -59,46 +59,76 @@ public class MyCartsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         montoTotal = root.findViewById(R.id.textView2);
+        progressBar = root.findViewById(R.id.progressbarCart);
+        buynow = root.findViewById(R.id.buy_now);
+
+        View carritoVacio = root.findViewById(R.id.carritoVacio);
+        View carritoLleno = root.findViewById(R.id.carritoLleno);
 
         LocalBroadcastManager.getInstance(getActivity())
-                .registerReceiver(mMessageReceiver, new  IntentFilter("MyTotalAmount"));
+                .registerReceiver(mMessageReceiver, new IntentFilter("MyTotalAmount"));
 
         cartModelList = new ArrayList<>();
-        cartAdapter = new MyCartAdapter(getActivity(),cartModelList);
+        cartAdapter = new MyCartAdapter(getActivity(), cartModelList);
         recyclerView.setAdapter(cartAdapter);
 
-        progressBar = root.findViewById(R.id.progressbarCart);
+        // Muestra el progreso inicialmente
         progressBar.setVisibility(View.VISIBLE);
-        recyclerView.setVisibility(View.GONE);
-
-        buynow = root.findViewById(R.id.buy_now);
+        carritoVacio.setVisibility(View.GONE);
+        carritoLleno.setVisibility(View.GONE);
 
         db.collection("CurrentUser").document(auth.getCurrentUser().getUid())
                 .collection("AddToCart").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()){
+                        progressBar.setVisibility(View.GONE);
 
-                                String documentid = documentSnapshot.getId();
-
+                        if (task.isSuccessful() && task.getResult() != null) {
+                            for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                                String documentId = documentSnapshot.getId();
                                 MyCartModel cartModel = documentSnapshot.toObject(MyCartModel.class);
-
-                                cartModel.setDocumentid(documentid);
-                                cartModelList.add(cartModel);
-                                cartAdapter.notifyDataSetChanged();
-                                progressBar.setVisibility(View.GONE);
-                                recyclerView.setVisibility(View.VISIBLE);
+                                if (cartModel != null) {
+                                    cartModel.setDocumentid(documentId);
+                                    cartModelList.add(cartModel);
+                                }
                             }
+                            cartAdapter.notifyDataSetChanged();
+
+                            // Verificar si hay datos en el carrito
+                            if (cartModelList.isEmpty()) {
+                                carritoVacio.setVisibility(View.VISIBLE);
+                                carritoLleno.setVisibility(View.GONE);
+                            } else {
+                                carritoVacio.setVisibility(View.GONE);
+                                carritoLleno.setVisibility(View.VISIBLE);
+                            }
+                        } else {
+                            // Si falla la consulta o no hay datos, mostrar el diseño vacío
+                            carritoVacio.setVisibility(View.VISIBLE);
+                            carritoLleno.setVisibility(View.GONE);
                         }
                     }
                 });
+
         buynow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), PlacedOrderActivity.class);
                 intent.putExtra("itemList", (Serializable) cartModelList);
                 startActivity(intent);
+            }
+        });
+
+        cartAdapter.setOnCartUpdatedListener(new MyCartAdapter.OnCartUpdatedListener() {
+            @Override
+            public void onCartUpdated(boolean isEmpty) {
+                if (isEmpty) {
+                    carritoVacio.setVisibility(View.VISIBLE);
+                    carritoLleno.setVisibility(View.GONE);
+                } else {
+                    carritoVacio.setVisibility(View.GONE);
+                    carritoLleno.setVisibility(View.VISIBLE);
+                }
             }
         });
 

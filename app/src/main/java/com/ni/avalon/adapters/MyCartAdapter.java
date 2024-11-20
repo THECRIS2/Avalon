@@ -29,11 +29,23 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
     FirebaseFirestore firestore;
     FirebaseAuth auth;
 
+    // Listener personalizado para notificar cambios
+    private OnCartUpdatedListener cartUpdatedListener;
+
+    public interface OnCartUpdatedListener {
+        void onCartUpdated(boolean isEmpty);
+    }
+
     public MyCartAdapter(Context context, List<MyCartModel> cartModelList) {
         this.context = context;
         this.cartModelList = cartModelList;
         firestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
+    }
+
+    // Configurar el listener
+    public void setOnCartUpdatedListener(OnCartUpdatedListener listener) {
+        this.cartUpdatedListener = listener;
     }
 
     @NonNull
@@ -53,31 +65,34 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         holder.cantidad.setText(currentItem.getCantTotal());
         holder.precio_total.setText(currentItem.getPrecioTotal());
 
-        // Configurar el botón para eliminar el ítem del carrito
         holder.eliminarItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentPosition = holder.getAdapterPosition(); // Usamos getAdapterPosition para obtener la posición actual del ViewHolder
+                int currentPosition = holder.getAdapterPosition();
                 if (currentPosition != RecyclerView.NO_POSITION) {
                     MyCartModel itemToDelete = cartModelList.get(currentPosition);
 
                     firestore.collection("CurrentUser")
                             .document(auth.getCurrentUser().getUid())
                             .collection("AddToCart")
-                            .document(itemToDelete.getDocumentid()) // Usar itemToDelete para obtener el ID del documento
+                            .document(itemToDelete.getDocumentid())
                             .delete()
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        // Eliminar el ítem de la lista y actualizar la vista
                                         cartModelList.remove(currentPosition);
                                         notifyItemRemoved(currentPosition);
                                         notifyItemRangeChanged(currentPosition, cartModelList.size());
                                         Toast.makeText(context, "Item eliminado", Toast.LENGTH_SHORT).show();
 
-                                        // Recalcular y enviar el nuevo total
+                                        // Recalcular el total
                                         recalcularTotal();
+
+                                        // Notificar al listener si la lista está vacía
+                                        if (cartUpdatedListener != null) {
+                                            cartUpdatedListener.onCartUpdated(cartModelList.isEmpty());
+                                        }
                                     } else {
                                         Toast.makeText(context, "Error al eliminar este item", Toast.LENGTH_SHORT).show();
                                     }
@@ -98,25 +113,21 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
     private void recalcularTotal() {
         int precio_total = 0;
-
-        // Sumamos el precio total de cada ítem en la lista
         for (MyCartModel item : cartModelList) {
             try {
                 int precioItem = Integer.parseInt(item.getPrecioTotal());
                 precio_total += precioItem;
             } catch (NumberFormatException e) {
-                e.printStackTrace(); // Manejar el error en caso de que el precio no sea válido
+                e.printStackTrace();
             }
         }
 
-        // Enviar el monto total actualizado como un Intent
         Intent intent = new Intent("MyTotalAmount");
         intent.putExtra("totalAmount", precio_total);
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
         TextView nombre, precio, fecha, hora, cantidad, precio_total;
         ImageView eliminarItem;
 
