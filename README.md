@@ -31,4 +31,5 @@ Es un proyecto de ecommerce que su nombre en clave era **Avalon** el cual esta h
 - 0.4.2 Se ha implementado la funcionalidad de la foto de perfil ahora el usuario puede subir su foto a la app
 - 0.4.4 Correcciones menores de errores esta es la ultima version que se identifica como Avalon ya que a partir de la siguiente version se identificara con su nombre final
 - 0.4.5 (Pre-Beta) Esta es la primera version en llamarse TecnoClick se corrige un error grave que al subir una foto a la app si el usuario no subia una foto hacia que la app se crasheaba, se hacen cambios en la interfaz para hacerla mas consistente
-- 0.4.6 (Pre-Beta) Se han corregido bugs graficos en perfiles y informacion de los productos, se introdujo las cardviews en ofertas
+- 0.4.6 (Pre-Beta) Se han corregido bugs graficos en perfiles y informacion de los productos, se introdujo las cardviews en ordenes
+- 0.4.7 (Pre-Beta) Se ha movido el boton de confirmar a las cardview de ordenes y esta completamente funcional y algunas correcciones menores de errores graficos
