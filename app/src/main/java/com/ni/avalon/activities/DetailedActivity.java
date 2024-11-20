@@ -60,7 +60,6 @@ public class DetailedActivity extends AppCompatActivity {
         // toolbar
         toolbar = findViewById(R.id.toolbarDetailed);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final Object object = getIntent().getSerializableExtra("descripcion");
         if (object instanceof ViewAllModel) {

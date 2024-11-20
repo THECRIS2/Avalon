@@ -14,8 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -38,6 +40,9 @@ public class MyOrdersFragment extends Fragment {
     List<OrderModel> orderModelList;
     OrderAdapter orderAdapter;
 
+    ConstraintLayout ordenVacia;
+    ConstraintLayout ordenLlena;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,8 +54,8 @@ public class MyOrdersFragment extends Fragment {
 
         recyclerView = root.findViewById(R.id.recyclerViewOrder);
         progressBar = root.findViewById(R.id.progressbarOrder);
-        ConstraintLayout ordenVacia = root.findViewById(R.id.ordenVacia);
-        ConstraintLayout ordenLlena = root.findViewById(R.id.ordenLlena);
+        ordenVacia = root.findViewById(R.id.ordenVacia);
+        ordenLlena = root.findViewById(R.id.ordenLlena);
 
         // Configuración inicial de vistas
         progressBar.setVisibility(View.VISIBLE);
@@ -60,7 +65,7 @@ public class MyOrdersFragment extends Fragment {
         // Configuración de RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         orderModelList = new ArrayList<>();
-        orderAdapter = new OrderAdapter(getContext(), orderModelList);
+        orderAdapter = new OrderAdapter(getContext(), orderModelList, this);
         recyclerView.setAdapter(orderAdapter);
 
         // Validar si el usuario está autenticado
@@ -71,6 +76,12 @@ public class MyOrdersFragment extends Fragment {
         }
 
         // Consultar datos de Firestore
+        fetchOrders();
+
+        return root;
+    }
+
+    private void fetchOrders() {
         db.collection("CurrentUser").document(auth.getCurrentUser().getUid())
                 .collection("MyOrder").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -109,7 +120,27 @@ public class MyOrdersFragment extends Fragment {
                         }
                     }
                 });
+    }
 
-        return root;
+    public void deleteOrder(int position, String documentId) {
+        db.collection("CurrentUser").document(auth.getCurrentUser().getUid())
+                .collection("MyOrder").document(documentId)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Eliminar de la lista y actualizar el adaptador
+                        orderModelList.remove(position);
+                        orderAdapter.notifyItemRemoved(position);
+                        Toast.makeText(getContext(), "Su orden ha sido confirmada exitosamente", Toast.LENGTH_SHORT).show();
+
+                        // Mostrar estado vacío si no quedan órdenes
+                        if (orderModelList.isEmpty()) {
+                            ordenVacia.setVisibility(View.VISIBLE);
+                            ordenLlena.setVisibility(View.GONE);
+                        }
+                    }
+                })
+                .addOnFailureListener(e -> Log.e("MyOrdersFragment", "Error al eliminar orden: ", e));
     }
 }

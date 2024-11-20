@@ -181,6 +181,15 @@
                 android:textSize="16sp"
                 android:fontFamily="sans-serif"/>
         </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/confButton"
+            android:backgroundTint="@color/white"
+            android:text="Confirmar orden"
+            android:textColor="@color/black"
+            android:layout_gravity="end"
+            android:padding="10dp"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

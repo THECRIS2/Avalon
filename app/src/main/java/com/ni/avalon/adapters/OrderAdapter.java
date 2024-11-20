@@ -1,16 +1,23 @@
 package com.ni.avalon.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.ni.avalon.MyOrdersFragment;
 import com.ni.avalon.R;
 import com.ni.avalon.model.OrderModel;
+
 
 import java.util.List;
 
@@ -18,10 +25,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     private Context context;
     private List<OrderModel> list;
+    private MyOrdersFragment fragment;
 
-    public OrderAdapter(Context context, List<OrderModel> list) {
+    public OrderAdapter(Context context, List<OrderModel> list, MyOrdersFragment fragment) {
         this.context = context;
         this.list = list;
+        this.fragment = fragment;
     }
 
     @NonNull
@@ -41,6 +50,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         holder.horaOrden.setText(model.getCurrentTime() != null ? model.getCurrentTime() : "N/A");
         holder.precioTotalOrden.setText(model.getPrecioTotal() != null ? model.getPrecioTotal() : "N/A");
         holder.cantidadTotalOrden.setText(model.getCantTotal() != null ? model.getCantTotal() : "N/A");
+
+        holder.confOrden.setOnClickListener(v -> {
+            if (fragment != null) {
+                fragment.deleteOrder(holder.getAdapterPosition(), model.getDocumentid());
+            }
+        });
     }
 
     @Override
@@ -51,6 +66,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView nombreOrden, precioItem, fechaOrden, horaOrden, precioTotalOrden, cantidadTotalOrden;
+        Button confOrden;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,6 +77,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             horaOrden = itemView.findViewById(R.id.orderTime);
             precioTotalOrden = itemView.findViewById(R.id.orderTotalPrice);
             cantidadTotalOrden = itemView.findViewById(R.id.orderQuantity);
+            confOrden = itemView.findViewById(R.id.confButton);
         }
     }
 }

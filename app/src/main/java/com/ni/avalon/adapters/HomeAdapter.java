@@ -58,13 +58,14 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView catImg;
-        TextView nombre;
+        TextView nombre, vistaMasPopular;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             catImg = itemView.findViewById(R.id.hom_cat_img);
             nombre = itemView.findViewById(R.id.cat_home_name);
+            vistaMasPopular = itemView.findViewById(R.id.vistaMasPopular);
         }
     }
 }

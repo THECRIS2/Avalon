@@ -44,7 +44,7 @@ public class ViewAllActivity extends AppCompatActivity {
         // toolbar
         toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         firestore = FirebaseFirestore.getInstance();
         String tipo = getIntent().getStringExtra("tipo");
