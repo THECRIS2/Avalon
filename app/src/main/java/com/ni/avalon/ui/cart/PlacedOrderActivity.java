@@ -1,4 +1,4 @@
-package com.ni.avalon;
+package com.ni.avalon.ui.cart;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -6,16 +6,13 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.ni.avalon.activities.DetailedActivity;
+import com.ni.avalon.R;
 import com.ni.avalon.model.MyCartModel;
 
 import java.util.ArrayList;

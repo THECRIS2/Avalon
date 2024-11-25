@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingRight="16dp"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:gravity="center"
+    android:background="@drawable/wallpaper3"
+    tools:context=".SQLite.Editar">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editar"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:textSize="30dp"
+            />
+
+    </LinearLayout>
+
+    <!-- Campo id -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/id"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:hint="ID"
+            android:background="@drawable/rounded"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:focusable="false"
+            android:editable="false"
+            android:ems="10"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+    <!-- Campo nombre -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:hint="Nombre"
+            android:background="@drawable/rounded"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:ems="10"
+            android:id="@+id/et_nombre"
+            android:textAlignment="center"
+            />
+    </LinearLayout>
+
+    <!-- Campo Apellido -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:hint="Apellido"
+            android:background="@drawable/rounded"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:ems="10"
+            android:id="@+id/et_apellido"
+            android:textAlignment="center"
+            />
+    </LinearLayout>
+
+    <!-- Campo fecha nacimiento-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:hint="Fecha Nacimiento"
+            android:background="@drawable/rounded"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:ems="10"
+            android:inputType="text"
+            android:id="@+id/et_fnacimiento"
+            android:textAlignment="center"
+            />
+    </LinearLayout>
+
+    <!-- Campo usuario-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:hint="Correo"
+            android:background="@drawable/rounded"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:ems="10"
+            android:inputType="text"
+            android:id="@+id/et_usuario"
+            android:textAlignment="center"
+            />
+    </LinearLayout>
+
+    <!-- Campo contraseña -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:hint="Contraseña"
+            android:background="@drawable/rounded"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:ems="10"
+            android:inputType="text"
+            android:id="@+id/et_contraseña"
+            android:textAlignment="center"
+            />
+    </LinearLayout>
+
+    <!-- Botones -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:id="@+id/btn_editar"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/pen"
+            />
+        <ImageButton
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:id="@+id/btn_eliminar"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/cross"
+            />
+
+        <ImageButton
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:id="@+id/btn_volver"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/left"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

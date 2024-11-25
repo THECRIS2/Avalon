@@ -15,7 +15,16 @@
         android:theme="@style/Theme.Avalon"
         tools:targetApi="31">
         <activity
-            android:name=".PlacedOrderActivity"
+            android:name=".SQLite.Editar"
+            android:exported="false" />
+        <activity
+            android:name=".SQLite.Leer"
+            android:exported="false" />
+        <activity
+            android:name=".SQLite.crud"
+            android:exported="false" />
+        <activity
+            android:name=".ui.cart.PlacedOrderActivity"
             android:exported="false" />
         <activity
             android:name=".activities.NavCategoryActivity"

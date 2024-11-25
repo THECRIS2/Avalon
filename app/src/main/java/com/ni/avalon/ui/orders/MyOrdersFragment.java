@@ -1,4 +1,4 @@
-package com.ni.avalon;
+package com.ni.avalon.ui.orders;
 
 import android.os.Bundle;
 
@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.ni.avalon.R;
 import com.ni.avalon.adapters.OrderAdapter;
 import com.ni.avalon.model.OrderModel;
 

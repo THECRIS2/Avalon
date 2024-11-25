@@ -24,22 +24,22 @@
         tools:layout="@layout/fragment_category" />
     <fragment
         android:id="@+id/nav_offers"
-        android:name="com.ni.avalon.OffersFragment"
+        android:name="com.ni.avalon.ui.offers.OffersFragment"
         android:label="@string/ofertas"
         tools:layout="@layout/fragment_offers" />
     <fragment
         android:id="@+id/nav_new_products"
-        android:name="com.ni.avalon.NewProductsFragment"
+        android:name="com.ni.avalon.ui.newProducts.NewProductsFragment"
         android:label="@string/novedades"
         tools:layout="@layout/fragment_new_products" />
     <fragment
         android:id="@+id/nav_my_orders"
-        android:name="com.ni.avalon.MyOrdersFragment"
+        android:name="com.ni.avalon.ui.orders.MyOrdersFragment"
         android:label="@string/mis_ordenes"
         tools:layout="@layout/fragment_my_orders" />
     <fragment
         android:id="@+id/nav_my_carts"
-        android:name="com.ni.avalon.MyCartsFragment"
+        android:name="com.ni.avalon.ui.cart.MyCartsFragment"
         android:label="@string/carrito_de_compra"
         tools:layout="@layout/fragment_my_carts" />
 </navigation>

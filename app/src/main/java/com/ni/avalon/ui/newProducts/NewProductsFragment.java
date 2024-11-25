@@ -1,4 +1,4 @@
-package com.ni.avalon;
+package com.ni.avalon.ui.newProducts;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ni.avalon.R;
 
 
 public class NewProductsFragment extends Fragment {

@@ -20,6 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ni.avalon.R;
+import com.ni.avalon.SQLite.crud;
 import com.ni.avalon.model.UserModel;
 
 public class register extends AppCompatActivity {
@@ -44,6 +45,17 @@ public class register extends AppCompatActivity {
                 startActivity(intent);
                 // aqui decimos que al presionar el boton nos mandara al activity main de nuestro proyecto
                 finish(); // una vez terminada su ejecucion matamos el activity para ahorrar recursos
+            }
+        });
+
+        // Boton CRUD
+        ImageButton CRUDButton = findViewById(R.id.btnCRUD);
+        CRUDButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(register.this, crud.class);
+                startActivity(intent);
+                finish();
             }
         });
 

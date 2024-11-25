@@ -18,11 +18,6 @@
             android:title="@string/Categorias" />
 
         <item
-            android:id="@+id/nav_offers"
-            android:icon="@drawable/etiquetas"
-            android:title="@string/ofertas" />
-
-        <item
             android:id="@+id/nav_my_orders"
             android:icon="@drawable/cartera"
             android:title="@string/mis_ordenes" />

@@ -1,4 +1,4 @@
-package com.ni.avalon;
+package com.ni.avalon.ui.cart;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.ni.avalon.R;
 import com.ni.avalon.adapters.MyCartAdapter;
 import com.ni.avalon.model.MyCartModel;
 
