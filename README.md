@@ -33,3 +33,4 @@ Es un proyecto de ecommerce que su nombre en clave era **Avalon** el cual esta h
 - 0.4.5 (Pre-Beta) Esta es la primera version en llamarse TecnoClick se corrige un error grave que al subir una foto a la app si el usuario no subia una foto hacia que la app se crasheaba, se hacen cambios en la interfaz para hacerla mas consistente
 - 0.4.6 (Pre-Beta) Se han corregido bugs graficos en perfiles y informacion de los productos, se introdujo las cardviews en ordenes
 - 0.4.7 (Pre-Beta) Se ha movido el boton de confirmar a las cardview de ordenes y esta completamente funcional y algunas correcciones menores de errores graficos
+- 0.4.8 (Pre-Beta) Se ha implementado el CRUD hecho con sqlite en una copia de la version anterior del proyecto a parte cambio la interfaz para mantener la coherencia con el proyecto general
