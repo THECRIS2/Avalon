@@ -9,6 +9,7 @@ Es un proyecto de ecommerce que su nombre en clave era **Avalon** el cual esta h
 - Se utiliza firestore database para almacenar todos los datos de los productos de la aplicacion
 - Se utiliza la libreria Glide que permite obtener, decodificar y mostrar imágenes fijas de video, imágenes y GIF animados. Para mas informacion visita su repositorio: https://github.com/bumptech/glide.git
 - Se usa CircleImageView para añadirles un contorno redondeado a las cuentas de usuario. Para mas informacion visita su repositorio https://github.com/hdodenhof/CircleImageView.git
+- Se usa eclipse para poder usar los metodos de mqtt para asi enviar datos a la red
 
 ## Estructura del proyecto
 - Se utiliza los models para poder declarar y gestionar las variables que recibimos de la firestore database a traves de constructores y el envio y recibo de cada dato
@@ -32,7 +33,9 @@ Es un proyecto de ecommerce que su nombre en clave era **Avalon** el cual esta h
 - 0.4.0 Se ha implementado las CardView de ordenes y se ha programado correctamente el boton de comprar ahora del carrito
 - 0.4.2 Se ha implementado la funcionalidad de la foto de perfil ahora el usuario puede subir su foto a la app
 - 0.4.4 Correcciones menores de errores esta es la ultima version que se identifica como Avalon ya que a partir de la siguiente version se identificara con su nombre final
-- 0.4.5 (Pre-Beta) Esta es la primera version en llamarse TecnoClick se corrige un error grave que al subir una foto a la app si el usuario no subia una foto hacia que la app se crasheaba, se hacen cambios en la interfaz para hacerla mas consistente
-- 0.4.6 (Pre-Beta) Se han corregido bugs graficos en perfiles y informacion de los productos, se introdujo las cardviews en ordenes
-- 0.4.7 (Pre-Beta) Se ha movido el boton de confirmar a las cardview de ordenes y esta completamente funcional y algunas correcciones menores de errores graficos
-- 0.4.8 (Pre-Beta) Se ha implementado el CRUD hecho con sqlite en una copia de la version anterior del proyecto a parte cambio la interfaz para mantener la coherencia con el proyecto general
+- 0.4.5 Esta es la primera version en llamarse TecnoClick se corrige un error grave que al subir una foto a la app si el usuario no subia una foto hacia que la app se crasheaba, se hacen cambios en la interfaz para hacerla mas consistente
+- 0.4.6 Se han corregido bugs graficos en perfiles y informacion de los productos, se introdujo las cardviews en ordenes
+- 0.4.7 Se ha movido el boton de confirmar a las cardview de ordenes y esta completamente funcional y algunas correcciones menores de errores graficos
+- 0.4.8 Se ha implementado el CRUD hecho con sqlite en una copia de la version anterior del proyecto a parte cambio la interfaz para mantener la coherencia con el proyecto general
+- 0.5.0 Se ha implementado mqtt en las cardviews de mis ordenes para enviar esos datos a mqtt
+- 0.5.1 Se han corregido errores del carrito de compra como cuando se compraba un producto no eliminaba los datos y no mostraba la pantalla vacia
