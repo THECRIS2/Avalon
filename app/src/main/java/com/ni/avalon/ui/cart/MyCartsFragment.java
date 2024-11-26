@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -114,9 +115,15 @@ public class MyCartsFragment extends Fragment {
         buynow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Enviar los datos al fragmento de órdenes
+                carritoVacio.setVisibility(View.VISIBLE);
+                carritoLleno.setVisibility(View.GONE);
                 Intent intent = new Intent(getContext(), PlacedOrderActivity.class);
                 intent.putExtra("itemList", (Serializable) cartModelList);
                 startActivity(intent);
+
+                // Vaciar el carrito de Firebase
+                vaciarCarrito();
             }
         });
 
@@ -136,6 +143,29 @@ public class MyCartsFragment extends Fragment {
         return root;
     }
 
+    private void vaciarCarrito() {
+
+        for (MyCartModel cartItem : cartModelList) {
+            db.collection("CurrentUser")
+                    .document(auth.getCurrentUser().getUid())
+                    .collection("AddToCart")
+                    .document(cartItem.getDocumentid())
+                    .delete()
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getContext(), "Carrito vaciado", Toast.LENGTH_SHORT).show();
+                                cartModelList.clear();
+                                cartAdapter.notifyDataSetChanged();
+                            } else {
+                                Toast.makeText(getContext(), "Error al vaciar el carrito", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }
+    }
+
     public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -144,4 +174,5 @@ public class MyCartsFragment extends Fragment {
             montoTotal.setText("Monto Total :"+totalBill+"$");
         }
     };
+
 }
