@@ -7,6 +7,8 @@ Es un proyecto de ecommerce que su nombre en clave era **Avalon** el cual esta h
 - Se usa realtime database de firebase la cual es una base de datos no relacional para el login se encarga de almacenar todos los datos de los usuarios registrados
 - Se utiliza authentication de firebase para verificar los usuarios almacenados en la base de datos de realtime para dar acceso a los usuarios registrados a la aplicacion
 - Se utiliza firestore database para almacenar todos los datos de los productos de la aplicacion
+- Se utiliza la libreria Glide que permite obtener, decodificar y mostrar imágenes fijas de video, imágenes y GIF animados. Para mas informacion visita su repositorio: https://github.com/bumptech/glide.git
+- Se usa CircleImageView para añadirles un contorno redondeado a las cuentas de usuario. Para mas informacion visita su repositorio https://github.com/hdodenhof/CircleImageView.git
 
 ## Estructura del proyecto
 - Se utiliza los models para poder declarar y gestionar las variables que recibimos de la firestore database a traves de constructores y el envio y recibo de cada dato
