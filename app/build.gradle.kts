@@ -61,4 +61,7 @@ dependencies {
 
     // imageview Circulares
     implementation("de.hdodenhof:circleimageview:3.1.0")
+
+    // Eclipse el cual nos permite enviar datos a mqtt
+    implementation("org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0")
 }
