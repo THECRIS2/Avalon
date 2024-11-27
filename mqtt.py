@@ -9,4 +9,4 @@ client.subscribe("lab/redes/android") ## este es nuestro topico
 client.on_message = on_message
 client.loop_forever()
 
-## instalar antes la libreria de paho en la terminal con el comando pip install paho-mqtt
+## instalar antes la libreria de paho en la terminal con el comando pip install paho-mqtt (recordar haber instalado python con la opcion marcada add to path para evitar errores)
