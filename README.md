@@ -43,3 +43,4 @@ Es un proyecto de ecommerce que su nombre en clave era **Avalon** el cual esta h
 
 ## Demostracion
 ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/1.png) ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/2.png)
+![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/3.png) ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/4.png)
