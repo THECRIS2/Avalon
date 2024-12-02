@@ -2,34 +2,29 @@ package com.ni.avalon.model;
 
 import java.io.Serializable;
 
-public class MyCartModel implements Serializable {
-    String productNombre;
-    String productPrecio;
-    String currentDate;
-    String currentTime;
-    String precioTotal;
-    String cantTotal;
-    String documentid;
+public class MyCartModel implements Serializable{
+    private String productNombre;
+    private String productPrecio;
+    private String currentDate;
+    private String currentTime;
+    private String cantTotal;
+    private String precioTotal;
+    private String documentid;
 
     public MyCartModel() {
     }
 
-    public MyCartModel(String productNombre, String productPrecio, String currentDate, String currentTime, String precioTotal, String cantTotal) {
+    public MyCartModel(String productNombre, String productPrecio, String currentDate,
+                       String currentTime, String cantTotal, String precioTotal, String documentid) {
         this.productNombre = productNombre;
         this.productPrecio = productPrecio;
         this.currentDate = currentDate;
         this.currentTime = currentTime;
-        this.precioTotal = precioTotal;
         this.cantTotal = cantTotal;
-    }
-
-    public String getDocumentid() {
-        return documentid;
-    }
-
-    public void setDocumentid(String documentid) {
+        this.precioTotal = precioTotal;
         this.documentid = documentid;
     }
+
 
     public String getProductNombre() {
         return productNombre;
@@ -63,6 +58,14 @@ public class MyCartModel implements Serializable {
         this.currentTime = currentTime;
     }
 
+    public String getCantTotal() {
+        return cantTotal;
+    }
+
+    public void setCantTotal(String cantTotal) {
+        this.cantTotal = cantTotal;
+    }
+
     public String getPrecioTotal() {
         return precioTotal;
     }
@@ -71,11 +74,11 @@ public class MyCartModel implements Serializable {
         this.precioTotal = precioTotal;
     }
 
-    public String getCantTotal() {
-        return cantTotal;
+    public String getDocumentid() {
+        return documentid;
     }
 
-    public void setCantTotal(String cantTotal) {
-        this.cantTotal = cantTotal;
+    public void setDocumentid(String documentid) {
+        this.documentid = documentid;
     }
 }

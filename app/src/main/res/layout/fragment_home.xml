@@ -55,21 +55,11 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
+                        android:gravity="center"
                         android:text="Productos Populares"
                         android:textSize="18sp"
                         android:textStyle="bold"/>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/vistaMasPopular"
-                        android:fontFamily="sans-serif"
-                        android:layout_weight="1"
-                        android:text="Ver todos"
-                        android:gravity="end"
-                        android:layout_marginRight="7dp"
-                        android:textSize="16sp"
-                        android:textColor="#0785d2"/>
 
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
@@ -93,20 +83,10 @@
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
                         android:text="Categorias"
+                        android:gravity="center"
                         android:textSize="18sp"
                         android:textStyle="bold"/>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/vistaCatalogo"
-                        android:fontFamily="sans-serif"
-                        android:layout_weight="1"
-                        android:text="Ver todos"
-                        android:gravity="end"
-                        android:layout_marginRight="7dp"
-                        android:textSize="16sp"
-                        android:textColor="#0785d2"/>
 
                 </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
@@ -130,20 +110,9 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif"
                 android:text="Recomendados"
+                 android:gravity="center"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
-
-                <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/vistaRecomendados"
-                android:fontFamily="sans-serif"
-                android:layout_weight="1"
-                android:text="Ver todos"
-                android:gravity="end"
-                android:layout_marginRight="7dp"
-                android:textSize="16sp"
-                android:textColor="#0785d2"/>
 
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView

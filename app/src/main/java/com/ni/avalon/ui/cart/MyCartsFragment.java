@@ -34,7 +34,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class MyCartsFragment extends Fragment {
 
     RecyclerView recyclerView;
@@ -47,12 +46,11 @@ public class MyCartsFragment extends Fragment {
     Button buynow;
 
     public MyCartsFragment() {
-        // Required empty public constructor
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_my_carts, container, false);
 
         db = FirebaseFirestore.getInstance();
@@ -64,21 +62,25 @@ public class MyCartsFragment extends Fragment {
         progressBar = root.findViewById(R.id.progressbarCart);
         buynow = root.findViewById(R.id.buy_now);
 
+
         View carritoVacio = root.findViewById(R.id.carritoVacio);
         View carritoLleno = root.findViewById(R.id.carritoLleno);
 
+
         LocalBroadcastManager.getInstance(getActivity())
                 .registerReceiver(mMessageReceiver, new IntentFilter("MyTotalAmount"));
+
 
         cartModelList = new ArrayList<>();
         cartAdapter = new MyCartAdapter(getActivity(), cartModelList);
         recyclerView.setAdapter(cartAdapter);
 
-        // Muestra el progreso inicialmente
+
         progressBar.setVisibility(View.VISIBLE);
         carritoVacio.setVisibility(View.GONE);
         carritoLleno.setVisibility(View.GONE);
 
+        // Obtener los productos del carrito de Firebase
         db.collection("CurrentUser").document(auth.getCurrentUser().getUid())
                 .collection("AddToCart").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -96,28 +98,27 @@ public class MyCartsFragment extends Fragment {
                             }
                             cartAdapter.notifyDataSetChanged();
 
-                            // Verificar si hay datos en el carrito
-                            if (cartModelList.isEmpty()) {
-                                carritoVacio.setVisibility(View.VISIBLE);
-                                carritoLleno.setVisibility(View.GONE);
-                            } else {
-                                carritoVacio.setVisibility(View.GONE);
-                                carritoLleno.setVisibility(View.VISIBLE);
-                            }
+                            // Verificar si el carrito está vacío
+                            actualizarVisibilidadCarrito(carritoVacio, carritoLleno);
+                            calcularMontoTotal();
                         } else {
-                            // Si falla la consulta o no hay datos, mostrar el diseño vacío
+                            // Si no hay productos, mostrar el layout de carrito vacío
                             carritoVacio.setVisibility(View.VISIBLE);
                             carritoLleno.setVisibility(View.GONE);
                         }
                     }
                 });
 
+        // Acción del botón "Comprar ahora"
         buynow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (cartModelList.isEmpty()) {
+                    Toast.makeText(getContext(), "El carrito está vacío", Toast.LENGTH_SHORT).show();
+                    return; // Evita continuar si el carrito está vacío
+                }
+
                 // Enviar los datos al fragmento de órdenes
-                carritoVacio.setVisibility(View.VISIBLE);
-                carritoLleno.setVisibility(View.GONE);
                 Intent intent = new Intent(getContext(), PlacedOrderActivity.class);
                 intent.putExtra("itemList", (Serializable) cartModelList);
                 startActivity(intent);
@@ -127,24 +128,20 @@ public class MyCartsFragment extends Fragment {
             }
         });
 
+        // Listener para actualizar el carrito cuando se elimine un artículo
         cartAdapter.setOnCartUpdatedListener(new MyCartAdapter.OnCartUpdatedListener() {
             @Override
             public void onCartUpdated(boolean isEmpty) {
-                if (isEmpty) {
-                    carritoVacio.setVisibility(View.VISIBLE);
-                    carritoLleno.setVisibility(View.GONE);
-                } else {
-                    carritoVacio.setVisibility(View.GONE);
-                    carritoLleno.setVisibility(View.VISIBLE);
-                }
+                actualizarVisibilidadCarrito(carritoVacio, carritoLleno);
+                calcularMontoTotal();  // Recalcular el monto total después de cada actualización
             }
         });
 
         return root;
     }
 
+    // Función para vaciar el carrito
     private void vaciarCarrito() {
-
         for (MyCartModel cartItem : cartModelList) {
             db.collection("CurrentUser")
                     .document(auth.getCurrentUser().getUid())
@@ -155,9 +152,15 @@ public class MyCartsFragment extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(getContext(), "Carrito vaciado", Toast.LENGTH_SHORT).show();
+                                // Vaciar el carrito local
                                 cartModelList.clear();
-                                cartAdapter.notifyDataSetChanged();
+                                cartAdapter.notifyDataSetChanged(); // Actualizar RecyclerView
+
+                                // Mostrar mensaje
+                                Toast.makeText(getContext(), "Carrito vaciado", Toast.LENGTH_SHORT).show();
+
+                                // Actualizar visibilidad de las vistas del carrito
+                                actualizarVisibilidadCarrito(getView().findViewById(R.id.carritoVacio), getView().findViewById(R.id.carritoLleno));
                             } else {
                                 Toast.makeText(getContext(), "Error al vaciar el carrito", Toast.LENGTH_SHORT).show();
                             }
@@ -166,13 +169,42 @@ public class MyCartsFragment extends Fragment {
         }
     }
 
+    // Función para actualizar la visibilidad del carrito
+    private void actualizarVisibilidadCarrito(View carritoVacio, View carritoLleno) {
+        if (cartModelList.isEmpty()) {
+            carritoVacio.setVisibility(View.VISIBLE);
+            carritoLleno.setVisibility(View.GONE);
+        } else {
+            carritoVacio.setVisibility(View.GONE);
+            carritoLleno.setVisibility(View.VISIBLE);
+        }
+    }
+
+    // Función para calcular el monto total del carrito
+    private void calcularMontoTotal() {
+        int montoTotalCarrito = 0;
+
+        for (MyCartModel item : cartModelList) {
+            try {
+                // Asegúrate de que el precio total se obtenga como un entero
+                int precioTotal = Integer.parseInt(item.getPrecioTotal());
+                montoTotalCarrito += precioTotal;  // Sumar al monto total
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Mostrar el monto total en el TextView
+        montoTotal.setText("Monto Total: " + montoTotalCarrito + "$");
+    }
+
+    // Receptor para recibir el total del carrito
     public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-
             int totalBill = intent.getIntExtra("totalAmount", 0);
-            montoTotal.setText("Monto Total :"+totalBill+"$");
+            montoTotal.setText("Monto Total: " + totalBill + "$");
         }
     };
-
 }
+

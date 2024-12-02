@@ -9,7 +9,7 @@
     android:elevation="4dp">
 
     <LinearLayout
-        android:background="#00a4ac"
+        android:background="@color/blue"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
@@ -57,7 +57,8 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="6dp"
-                    android:src="@drawable/add" />
+                    android:src="@drawable/agregar"
+                    app:tint="@color/white"/>
 
                 <TextView
                     android:id="@+id/quantity"
@@ -65,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:text="1"
                     android:layout_margin="3dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -73,18 +74,19 @@
                     android:id="@+id/remove_item"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/remove" />
+                    android:src="@drawable/menos"
+                    app:tint="@color/white"/>
             </LinearLayout>
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/comprarAhora"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:background="#d9dbdf"
                 android:text="Comprar Ahora"
                 android:textAllCaps="false"
                 android:textSize="10dp"
                 android:textStyle="bold"
+                android:background="@drawable/button"
                 android:layout_gravity="end"/>
 
         </LinearLayout>

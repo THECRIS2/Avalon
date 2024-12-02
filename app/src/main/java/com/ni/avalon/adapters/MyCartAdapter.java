@@ -43,7 +43,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         auth = FirebaseAuth.getInstance();
     }
 
-    // Configurar el listener
     public void setOnCartUpdatedListener(OnCartUpdatedListener listener) {
         this.cartUpdatedListener = listener;
     }
@@ -102,7 +101,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
             }
         });
 
-        // Recalcular el total cada vez que se carga el RecyclerView
         recalcularTotal();
     }
 
