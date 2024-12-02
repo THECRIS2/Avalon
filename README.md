@@ -48,6 +48,7 @@ Es un proyecto de ecommerce que su nombre en clave era **Avalon** el cual esta h
 ## Registro y CRUD SQLite
 ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/3.png) ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/4.png)
 ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/5.png) ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/6.png)
+## Menu
 ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/7.png) ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/8.png)
 ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/9.png) ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/10.png)
 ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/11.png) ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/12.png)
@@ -56,3 +57,4 @@ Es un proyecto de ecommerce que su nombre en clave era **Avalon** el cual esta h
 ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/17.png) ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/18.png)
 ## Categorias
 ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/19.png)
+![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/20.png)
