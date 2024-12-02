@@ -39,10 +39,13 @@ Es un proyecto de ecommerce que su nombre en clave era **Avalon** el cual esta h
 - 0.4.8 Se ha implementado el CRUD hecho con sqlite en una copia de la version anterior del proyecto a parte cambio la interfaz para mantener la coherencia con el proyecto general
 - 0.5.0 Se ha implementado mqtt en las cardviews de mis ordenes para enviar esos datos a mqtt
 - 0.5.1 Se han corregido errores del carrito de compra como cuando se compraba un producto no eliminaba los datos y no mostraba la pantalla vacia
+- 0.5.2 Se han cambiado la apariencia de los botones de comprar ahora y la cardview de las categorias, tambien a las cardviews se le cambiaron los iconos y colores para hacerlo consistente con la linea de diseño de la aplicacion y tambien esta completamente funcional
 
 
-## Demostracion
+# Demostracion
+## Inicio de sesion
 ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/1.png) ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/2.png)
+## Registro y CRUD SQLite
 ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/3.png) ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/4.png)
 ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/5.png) ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/6.png)
 ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/7.png) ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/8.png)
