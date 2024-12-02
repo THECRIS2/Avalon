@@ -9,7 +9,7 @@ Es un proyecto de ecommerce que su nombre en clave era **Avalon** el cual esta h
 - Se utiliza firestore database para almacenar todos los datos de los productos de la aplicacion
 - Se utiliza la libreria Glide que permite obtener, decodificar y mostrar imágenes fijas de video, imágenes y GIF animados. Para mas informacion visita su repositorio: https://github.com/bumptech/glide.git
 - Se usa CircleImageView para añadirles un contorno redondeado a las cuentas de usuario. Para mas informacion visita su repositorio https://github.com/hdodenhof/CircleImageView.git
-- Se usa eclipse para poder usar los metodos de mqtt para asi enviar datos a la red
+- Se usa eclipse para poder usar los metodos de mqtt para asi enviar datos a la red a traves de un topico
 
 ## Estructura del proyecto
 - Se utiliza los models para poder declarar y gestionar las variables que recibimos de la firestore database a traves de constructores y el envio y recibo de cada dato
@@ -39,3 +39,28 @@ Es un proyecto de ecommerce que su nombre en clave era **Avalon** el cual esta h
 - 0.4.8 Se ha implementado el CRUD hecho con sqlite en una copia de la version anterior del proyecto a parte cambio la interfaz para mantener la coherencia con el proyecto general
 - 0.5.0 Se ha implementado mqtt en las cardviews de mis ordenes para enviar esos datos a mqtt
 - 0.5.1 Se han corregido errores del carrito de compra como cuando se compraba un producto no eliminaba los datos y no mostraba la pantalla vacia
+- 0.5.2 Se han cambiado la apariencia de los botones de comprar ahora y la cardview de las categorias, tambien a las cardviews se le cambiaron los iconos y colores para hacerlo consistente con la linea de diseño de la aplicacion y tambien esta completamente funcional
+
+
+# Demostracion
+## Inicio de sesion
+![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/1.png) ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/2.png)
+## Registro y CRUD SQLite
+![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/3.png) ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/4.png)
+![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/5.png) ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/6.png)
+## Menu
+![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/7.png) ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/8.png)
+![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/17.png) 
+## Productos
+![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/9.png) ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/10.png)
+## Carrito de compra
+![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/11.png) ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/12.png)
+![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/13.png) 
+## Mis ordenes
+![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/14.png)
+![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/15.png) ![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/16.png)
+## Perfil
+![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/18.png)
+## Categorias
+![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/19.png)
+![Imagen no encontrada](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas/20.png)
