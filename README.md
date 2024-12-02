@@ -40,4 +40,4 @@ Es un proyecto de ecommerce que su nombre en clave era **Avalon** el cual esta h
 - 0.5.0 Se ha implementado mqtt en las cardviews de mis ordenes para enviar esos datos a mqtt
 - 0.5.1 Se han corregido errores del carrito de compra como cuando se compraba un producto no eliminaba los datos y no mostraba la pantalla vacia
 
-  capturas proyecto/1.png
+[  https://capturas proyecto/1.png](https://raw.githubusercontent.com/THECRIS2/TecnoClick/master/capturas proyecto/1.png)
