@@ -21,9 +21,8 @@ Es un proyecto de ecommerce que su nombre en clave era **Avalon** el cual esta h
 
 ## Versiones
 - 0.1.0 Primera version alpha publica
-- 0.1.2 Login y registro completamente funcional
-- 0.1.4 Se implementa el activity de navigation correctamente
-- 0.1.5 Se hace reestructuraciones con las clases del proyecto, se eliminaron algunas clases generadas por defecto por el navigation activity y las clases de las activitys anteriores se movieron a una carpeta llamada activity
+- 0.1.1 Login y registro completamente funcional
+- 0.1.5 Se hace reestructuraciones con las clases del proyecto, se eliminaron algunas clases generadas por defecto por el navigation activity y las clases de las activitys anteriores se movieron a una carpeta llamada activity y se implementa el activity de navigation correctamente
 - 0.2.0 Se implementa la interfaz definitiva del menu parcialmente funcional
 - 0.2.2 Se ha implementado la informacion en las CardViews de populares
 - 0.2.3 Las CardViews de categoria han quedado funcionales
